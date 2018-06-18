@@ -27,7 +27,7 @@ confine_block(:to, :platform => 'windows') do
   agents.each do |agent|
     step 'Copy Test Type Wrappers'
     install_fake_reboot_resource(agent)
-
+require 'pry'; binding.pry
     step 'Run Puppet Apply'
     on(agent, puppet('apply'), :stdin => dsc_manifest, :acceptable_exit_codes => [0,2]) do |result|
       assert_no_match(/Error:/, result.stderr, 'Unexpected error was detected!')
